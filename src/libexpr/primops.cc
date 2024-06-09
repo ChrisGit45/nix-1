@@ -957,13 +957,16 @@ static RegisterPrimOp primop_getEnv({
     .name = "__getEnv",
     .args = {"s"},
     .doc = R"(
-      `getEnv` returns the value of the environment variable *s*, or an
-      empty string if the variable doesn’t exist. This function should be
-      used with care, as it can introduce all sorts of nasty environment
-      dependencies in your Nix expression.
+      `getEnv` Is a function that returns the enviroment variable x.
 
-      `getEnv` is used in Nix Packages to locate the file
-      `~/.nixpkgs/config.nix`, which contains user-local settings for Nix
+      If the enviroment does not exist, this function returns an empty string.
+      For example getEnv "HOME" will returns the current users HOME directory.
+
+      This function should be used with care, as it can introduce all sorts of 
+      nasty environment  dependencies in your Nix expression.
+
+      This function is used in Nix Packages to locate the config.nix file for example
+      `~/.config/nixpkgs/config.nix`, which contains user-local settings for Nix
       Packages. (That is, it does a `getEnv "HOME"` to locate the user’s
       home directory.)
     )",
